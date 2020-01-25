@@ -42,18 +42,27 @@ public class ClienteController {
 
     // POST
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String createCliente(@RequestBody Cliente	clienteEntity){
-    	clienteRepository.save(clienteEntity);
+    public String createCliente(@RequestBody Cliente cliente){
+    	clienteRepository.save(cliente);
         return "Cliente salvo com sucesso";
     }
 
-//    // PUT
-//    @ResponseBody
-//    @RequestMapping(value = "/{codigo}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public Object updateCliente(@PathVariable Long codigo,@RequestBody ClienteDTO clienteDTO){
-//    	clienteService.updateCliente(codigo, clienteDTO);
-//        return "Cliente atualizado com sucesso";
-//    }
+    // PUT
+    @ResponseBody
+    @RequestMapping(value = "/{codigo}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Object updateCliente(@PathVariable Long codigo, @RequestBody Cliente clienteUpdate){
+    	
+    	Cliente clienteSalvo = clienteRepository.getOne(codigo);
+    	    	
+    	clienteSalvo.setNome(clienteUpdate.getNome());
+    	clienteSalvo.setCPF(clienteUpdate.getCPF());
+    	clienteSalvo.setEndereco(clienteUpdate.getEndereco());
+    	clienteSalvo.setTelefone(clienteUpdate.getTelefone());
+    	clienteSalvo.setEmail(clienteUpdate.getEmail());
+    	    	
+    	clienteRepository.save(clienteSalvo);
+        return "Cliente atualizado com sucesso";
+    }
 
     // DELETE
     @ResponseBody
@@ -61,6 +70,14 @@ public class ClienteController {
     public String deleteCliente(@PathVariable Long codigo){
     	clienteRepository.deleteById(codigo);
         return "Cliente deletado com sucesso";
+    }
+    
+    // DELETE ALL
+    @ResponseBody
+    @RequestMapping(value = "", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deleteAll(){
+    	clienteRepository.deleteAll();
+        return "Todos os clientes foram deletados";
     }
 	
 }
