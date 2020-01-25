@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "enderecos")
-public class EnderecoEntity {
+public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class EnderecoEntity {
 	private String complemento;
 	
 	@ManyToOne
-	private ClienteEntity cliente;
+	private Cliente cliente;
 	
 	// Getters & Setters
 	public Long getCodigo() {
@@ -79,10 +79,10 @@ public class EnderecoEntity {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	public ClienteEntity getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
-	public void setCliente(ClienteEntity cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	
@@ -102,7 +102,7 @@ public class EnderecoEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EnderecoEntity other = (EnderecoEntity) obj;
+		Endereco other = (Endereco) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

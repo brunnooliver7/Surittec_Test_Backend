@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "emails")
-public class EmailEntity {
+public class Email {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class EmailEntity {
 	private String email;
 	
 	@ManyToOne
-	private ClienteEntity cliente;
+	private Cliente cliente;
 
 	public Long getCodigo() {
 		return codigo;
@@ -36,11 +36,11 @@ public class EmailEntity {
 		this.email = email;
 	}
 
-	public ClienteEntity getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(ClienteEntity cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
@@ -60,7 +60,7 @@ public class EmailEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EmailEntity other = (EmailEntity) obj;
+		Email other = (Email) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

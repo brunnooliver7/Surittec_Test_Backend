@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "telefones")
-public class TelefoneEntity {
+public class Telefone {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class TelefoneEntity {
 	private String numero;
 	
 	@ManyToOne
-	private ClienteEntity cliente;
+	private Cliente cliente;
 
 	public Long getCodigo() {
 		return codigo;
@@ -36,11 +36,11 @@ public class TelefoneEntity {
 		this.numero = numero;
 	}
 
-	public ClienteEntity getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(ClienteEntity cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
@@ -60,7 +60,7 @@ public class TelefoneEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TelefoneEntity other = (TelefoneEntity) obj;
+		Telefone other = (Telefone) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

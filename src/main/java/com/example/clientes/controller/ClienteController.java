@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.clientes.entity.ClienteEntity;
+import com.example.clientes.entity.Cliente;
 import com.example.clientes.repository.ClienteRepository;
 
 @RestController
@@ -28,21 +28,21 @@ public class ClienteController {
 	// List
 	@ResponseBody
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ClienteEntity> getAllClientes() {
+    public List<Cliente> getAllClientes() {
 		return clienteRepository.findAll();
     }	
 	
     // GET
     @ResponseBody
     @RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ClienteEntity> getCliente(@PathVariable Long codigo){
-    	Optional<ClienteEntity> cliente = clienteRepository.findById(codigo);
+    public ResponseEntity<Cliente> getCliente(@PathVariable Long codigo){
+    	Optional<Cliente> cliente = clienteRepository.findById(codigo);
     	return cliente.isPresent() ? ResponseEntity.ok(cliente.get()) : ResponseEntity.notFound().build();
     }
 
     // POST
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String createCliente(@RequestBody ClienteEntity	clienteEntity){
+    public String createCliente(@RequestBody Cliente	clienteEntity){
     	clienteRepository.save(clienteEntity);
         return "Cliente salvo com sucesso";
     }

@@ -16,7 +16,7 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "clientes")
-public class ClienteEntity {
+public class Cliente {
 
 	// Atributos
 	
@@ -32,15 +32,15 @@ public class ClienteEntity {
 	private String cpf;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
-	private List<EnderecoEntity> endereco;
+	private List<Endereco> endereco;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	@NotNull
-	private List<TelefoneEntity> telefone;
+	private List<Telefone> telefone;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	@NotNull
-	private List<EmailEntity> email;
+	private List<Email> email;
 
 	// Getters & Setters
 	public Long getCodigo() {
@@ -61,22 +61,22 @@ public class ClienteEntity {
 	public void setCPF(String CPF) {
 		cpf = CPF;
 	}
-	public List<EnderecoEntity> getEndereco() {
+	public List<Endereco> getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(List<EnderecoEntity> endereco) {
+	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
 	}
-	public List<TelefoneEntity> getTelefone() {
+	public List<Telefone> getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(List<TelefoneEntity> telefone) {
+	public void setTelefone(List<Telefone> telefone) {
 		this.telefone = telefone;
 	}
-	public List<EmailEntity> getEmail() {
+	public List<Email> getEmail() {
 		return email;
 	}
-	public void setEmail(List<EmailEntity> email) {
+	public void setEmail(List<Email> email) {
 		this.email = email;
 	}
 
@@ -96,7 +96,7 @@ public class ClienteEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ClienteEntity other = (ClienteEntity) obj;
+		Cliente other = (Cliente) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
