@@ -3,7 +3,9 @@ package com.example.clientes.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,14 +27,12 @@ public class ClienteController {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	// List
 	@ResponseBody
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Cliente> getAllClientes() {
 		return clienteRepository.findAll();
     }	
 	
-    // GET
     @ResponseBody
     @RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Cliente> getCliente(@PathVariable Long codigo){
@@ -40,31 +40,31 @@ public class ClienteController {
     	return cliente.isPresent() ? ResponseEntity.ok(cliente.get()) : ResponseEntity.notFound().build();
     }
 
-    // POST
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String createCliente(@RequestBody Cliente cliente){
     	clienteRepository.save(cliente);
         return "Cliente salvo com sucesso";
     }
 
-    // PUT
     @ResponseBody
     @RequestMapping(value = "/{codigo}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Object updateCliente(@PathVariable Long codigo, @RequestBody Cliente clienteUpdate){
     	
-    	Cliente clienteSalvo = clienteRepository.getOne(codigo);
-    	    	
-    	clienteSalvo.setNome(clienteUpdate.getNome());
-    	clienteSalvo.setCPF(clienteUpdate.getCPF());
-    	clienteSalvo.setEndereco(clienteUpdate.getEndereco());
-    	clienteSalvo.setTelefone(clienteUpdate.getTelefone());
-    	clienteSalvo.setEmail(clienteUpdate.getEmail());
-    	    	
-    	clienteRepository.save(clienteSalvo);
+    	Cliente clienteSalvo = buscarClientePeloCodigo(codigo);
+		BeanUtils.copyProperties(clienteUpdate, clienteSalvo, "codigo");
+		clienteRepository.save(clienteSalvo);
+		    	    	
         return "Cliente atualizado com sucesso";
     }
+    
+    public Cliente buscarClientePeloCodigo(Long codigo) {
+    	Optional<Cliente> clienteSalvo = clienteRepository.findById(codigo);
+		if (!clienteSalvo.isPresent()) {
+			System.out.println("Cliente não presente");
+		}
+		return clienteSalvo.get();
+    }
 
-    // DELETE
     @ResponseBody
     @RequestMapping(value = "/{codigo}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String deleteCliente(@PathVariable Long codigo){
@@ -72,7 +72,6 @@ public class ClienteController {
         return "Cliente deletado com sucesso";
     }
     
-    // DELETE ALL
     @ResponseBody
     @RequestMapping(value = "", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String deleteAll(){

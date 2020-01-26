@@ -17,8 +17,6 @@ import com.sun.istack.NotNull;
 @Entity
 @Table(name = "clientes")
 public class Cliente {
-
-	// Atributos
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +40,6 @@ public class Cliente {
 	@NotNull
 	private List<Email> email;
 
-	// Getters & Setters
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -80,7 +77,6 @@ public class Cliente {
 		this.email = email;
 	}
 
-	// HashCode & Equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;

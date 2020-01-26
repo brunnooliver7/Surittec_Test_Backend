@@ -36,7 +36,6 @@ public class Endereco {
 	@ManyToOne
 	private Cliente cliente;
 	
-	// Getters & Setters
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -86,7 +85,6 @@ public class Endereco {
 		this.cliente = cliente;
 	}
 	
-	// HashCode & Equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
