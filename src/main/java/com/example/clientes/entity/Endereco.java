@@ -16,19 +16,14 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@NotEmpty
 	private String cep;
 	
-	@NotEmpty
 	private String logradouro;
 	
-	@NotEmpty
 	private String bairro;
 	
-	@NotEmpty
 	private String cidade;
 	
-	@NotEmpty
 	private String uf;
 	
 	private String complemento;

@@ -22,22 +22,18 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@NotEmpty
 	@Size(min = 3, max = 100)
 	private String nome;
 	
-	@NotEmpty	
 	private String cpf;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Endereco> endereco;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
-	@NotNull
 	private List<Telefone> telefone;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
-	@NotNull
 	private List<Email> email;
 
 	public Long getCodigo() {
