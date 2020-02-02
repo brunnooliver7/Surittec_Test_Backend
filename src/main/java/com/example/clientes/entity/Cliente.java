@@ -9,10 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "clientes")
@@ -22,7 +18,6 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@Size(min = 3, max = 100)
 	private String nome;
 	
 	private String cpf;
