@@ -20,7 +20,7 @@ public class ClienteService {
 	}
 	
 	public Cliente buscarClientePeloCodigo(Long codigo) {
-    	Cliente clienteSalvo = clienteRepository.findOne(codigo);
+    	Cliente clienteSalvo = clienteRepository.getOne(codigo);
 		if (clienteSalvo != null) {
 			System.out.println("Cliente não presente");
 		}

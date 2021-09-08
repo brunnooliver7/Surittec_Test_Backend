@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "clientes")
+@Data @NoArgsConstructor @AllArgsConstructor
 public class Cliente {
 	
 	@Id
@@ -30,66 +35,5 @@ public class Cliente {
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Email> email;
-
-	public Long getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getCPF() {
-		return cpf;
-	}
-	public void setCPF(String CPF) {
-		cpf = CPF;
-	}
-	public List<Endereco> getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
-	}
-	public List<Telefone> getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
-	}
-	public List<Email> getEmail() {
-		return email;
-	}
-	public void setEmail(List<Email> email) {
-		this.email = email;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
-				return false;
-		} else if (!codigo.equals(other.codigo))
-			return false;
-		return true;
-	}
 		
 }
