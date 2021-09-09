@@ -1,7 +1,7 @@
 package com.example.clientes.service;
 
-import com.example.clientes.Exception.EntidadeNaoEncontradaException;
 import com.example.clientes.entity.Cliente;
+import com.example.clientes.exception.EntidadeNaoEncontradaException;
 import com.example.clientes.repository.ClienteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
