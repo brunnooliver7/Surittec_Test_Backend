@@ -23,8 +23,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/clientes")
+@Api(value = "API REST Clientes")
 public class ClienteController {
 		
 	@Autowired
@@ -35,6 +39,7 @@ public class ClienteController {
 	
     @GetMapping (produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @PreAuthorize("hasRole('admin') || hasRole('comum')")
+    @ApiOperation(value = "Retorna uma lista de clientes")
     public ResponseEntity<List<Cliente>> getAllClientes() {
         List<Cliente> clientes = clienteRepository.findAll();
         return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
@@ -42,6 +47,7 @@ public class ClienteController {
 	
     @GetMapping (value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @PreAuthorize("hasRole('admin') || hasRole('comum')")
+    @ApiOperation(value = "Retorna um cliente")
     public ResponseEntity<?> getCliente(@PathVariable Long id){
         try {
             Cliente cliente = clienteService.findOne(id);
@@ -50,16 +56,18 @@ public class ClienteController {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-
+    
     @PostMapping
     @PreAuthorize("hasRole('admin')")
+    @ApiOperation(value = "Cria um cliente")
     public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente){
         Cliente clienteSalvo = clienteRepository.save(cliente);
     	return new ResponseEntity<Cliente>(clienteSalvo, HttpStatus.OK);    	
     }
-
+    
     @PutMapping ("/{id}")
     @PreAuthorize("hasRole('admin')")
+    @ApiOperation(value = "Atualiza um cliente")
     public Object updateCliente(@PathVariable Long id, @RequestBody Cliente clienteUpdate){
         Optional<Cliente> clienteAtual = clienteRepository.findById(id);
         if (clienteAtual.isPresent()) {
@@ -69,9 +77,10 @@ public class ClienteController {
         }
         return ResponseEntity.notFound().build();
     }
-
+    
     @DeleteMapping ("/{id}")
     @PreAuthorize("hasRole('admin')")
+    @ApiOperation(value = "Deleta um cliente")
     public ResponseEntity<String> deleteCliente(@PathVariable Long id){
         try {
             clienteService.delete(id);
