@@ -15,7 +15,7 @@
 	</parent>
 	
 	<!-- Projeto -->
-	<groupId>com.example</groupId>
+	<groupId>com</groupId>
 	<artifactId>clientes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>clientes</name>
