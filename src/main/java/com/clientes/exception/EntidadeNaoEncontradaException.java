@@ -1,4 +1,4 @@
-package com.example.clientes.exception;
+package com.clientes.exception;
 
 public class EntidadeNaoEncontradaException extends RuntimeException {
     

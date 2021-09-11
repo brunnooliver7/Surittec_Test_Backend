@@ -1,12 +1,12 @@
-package com.example.clientes.controller;
+package com.clientes.controller;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.example.clientes.entity.Cliente;
-import com.example.clientes.exception.EntidadeNaoEncontradaException;
-import com.example.clientes.repository.ClienteRepository;
-import com.example.clientes.service.ClienteService;
+import com.clientes.entity.Cliente;
+import com.clientes.exception.EntidadeNaoEncontradaException;
+import com.clientes.repository.ClienteRepository;
+import com.clientes.service.ClienteService;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

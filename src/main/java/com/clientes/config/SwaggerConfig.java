@@ -1,4 +1,4 @@
-package com.example.clientes.config;
+package com.clientes.config;
 
 import java.util.ArrayList;
 

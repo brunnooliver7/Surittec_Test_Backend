@@ -1,8 +1,8 @@
-package com.example.clientes.service;
+package com.clientes.service;
 
-import com.example.clientes.entity.Cliente;
-import com.example.clientes.exception.EntidadeNaoEncontradaException;
-import com.example.clientes.repository.ClienteRepository;
+import com.clientes.entity.Cliente;
+import com.clientes.exception.EntidadeNaoEncontradaException;
+import com.clientes.repository.ClienteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

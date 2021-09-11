@@ -1,4 +1,4 @@
-package com.example.clientes.entity;
+package com.clientes.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,25 +11,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity @Table(name = "enderecos")
+@Entity @Table(name = "telefones")
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Endereco {
-
+public class Telefone {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String cep;
+	private String numero;
 	
-	private String logradouro;
-	
-	private String bairro;
-	
-	private String cidade;
-	
-	private String uf;
-	
-	private String complemento;
+	private String tipo;
 	
 	@ManyToOne
 	private Cliente cliente;

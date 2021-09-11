@@ -1,4 +1,4 @@
-package com.example.clientes.security;
+package com.clientes.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
