@@ -1,0 +1,27 @@
+version: "3.9"
+
+networks:
+  clientes-network:
+    driver: bridge
+
+services:
+  clientes-mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306"
+    networks:
+      - clientes-network
+
+  clientes-api:
+    build: .
+    command: ["/wait-for-it.sh", "clientes-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
+    environment:
+      DB_HOST: clientes-mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - clientes-network
+    depends_on:
+      - clientes-mysql
