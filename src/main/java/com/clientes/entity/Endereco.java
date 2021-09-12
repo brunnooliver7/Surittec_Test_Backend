@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,14 +20,19 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private String cep;
 	
+	@NotNull
 	private String logradouro;
 	
+	@NotNull
 	private String bairro;
 	
+	@NotNull
 	private String cidade;
 	
+	@NotNull
 	private String uf;
 	
 	private String complemento;

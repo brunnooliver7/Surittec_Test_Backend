@@ -1,0 +1,38 @@
+{
+	"nome": "Bruno alterado",
+	"cpf" : "11111111111",
+	"endereco" : [
+		{
+			"cep": "12345678",
+			"logradouro" : "1",
+			"bairro" : "Sul",
+			"cidade" : "Brasília",
+			"uf" : "DF"
+		},
+		{
+			"cep": "195718431",
+			"logradouro" : "C",
+			"bairro" : "Centro",
+			"cidade" : "Ceilândia",
+			"uf" : "DF"
+		}
+	],
+	"telefone" : [
+		{
+			"numero" : "61999999999",
+			"tipo": "Celular"
+		},
+		{
+			"numero" : "33333333",
+			"tipo" : "Residencial"
+		}
+	],
+	"email" : [
+		{
+			"email" : "bruno@gmail.com"
+		},
+		{
+			"email": "bruno@hotmail.com"
+		}
+	]
+}
