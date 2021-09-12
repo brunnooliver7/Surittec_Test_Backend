@@ -62,7 +62,7 @@ public class ClienteController {
     @ApiOperation(value = "Cria um cliente")
     public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente){
         Cliente clienteSalvo = clienteRepository.save(cliente);
-    	return new ResponseEntity<Cliente>(clienteSalvo, HttpStatus.OK);    	
+    	return new ResponseEntity<Cliente>(clienteSalvo, HttpStatus.CREATED);    	
     }
     
     @PutMapping ("/{id}")
